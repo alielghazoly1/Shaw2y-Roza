@@ -759,6 +759,23 @@
                         background-repeat: no-repeat;
                     }
 
+                    /* FINAL mobile fix: stop relying on the absolutely-positioned photo
+                       element (data-elem-id 1776948113983) below 768px — its 440px width is
+                       hard-coded with no responsive breakpoint, and forcing it via CSS was
+                       still getting beaten by Tilda's own runtime styles on real devices.
+                       Instead, hide that element on mobile and paint the photo directly as
+                       the section's native background (.t396__carrier), which Tilda already
+                       sizes to 100% of the artboard by default — no px math involved, so it
+                       can't overflow or get clipped/zoomed on any screen width. */
+                    @media screen and (max-width: 767px) {
+                        #rec2442650993 .t396__carrier {
+                            background-image: url('images/shaw2y-roza-hero.jpg');
+                        }
+                        #rec2442650993 .tn-elem[data-elem-id="1776948113983"] {
+                            display: none !important;
+                        }
+                    }
+
                     @media screen and (max-width: 1199px) {
                         #rec2442650993 .t396__artboard,#rec2442650993 .t396__filter,#rec2442650993 .t396__carrier {
                         }
