@@ -851,6 +851,24 @@
                             ;}
                     }
 
+                    /* Mobile fix: this element's width (440px) is hard-coded in the exported
+                       CSS with no responsive override — only "left" changes per breakpoint.
+                       On real phones (<440px wide) that leaves the photo wider than the
+                       viewport, so it overflows and gets clipped, which looks like a zoom.
+                       Force it to fill the viewport width instead. Height/top are left
+                       untouched (still 782px) so this stays vertically in sync with the
+                       artboard and the text elements sitting on top of it, which are
+                       positioned with plain (unscaled) top offsets against that same 782px. */
+                    @media screen and (max-width: 767px) {
+                        #rec2442650993 .tn-elem[data-elem-id="1776948113983"],
+                        #rec2442650993 .tn-elem[data-elem-id="1776948546583"] {
+                            left: 0 !important;
+                            width: 100vw !important;
+                            max-width: 100vw !important;
+                        }
+                    }
+
+
                     #rec2442650993 .tn-elem[data-elem-id="1776948546583"] {
                         z-index: 3;
                         top: 0px;
